@@ -1,4 +1,5 @@
 // Import modules
+// add comment to create branch
 const findLinkedIssue = require('../utils/find-linked-issue');
 var fs = require("fs");
 // Global variables
