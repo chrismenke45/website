@@ -17,7 +17,7 @@ function getCurrentSearch() {
   let currentSearch = location
     .search
     .slice(1, location.search.length)
-    .replace("+", "")
+    .replaceAll("+", "")
     .toLowerCase()
   if (! currentSearch) {
     return null
@@ -46,6 +46,9 @@ function hashFilter(e) {
     }
 
   })
+  updateCheckBoxState(currentSearch)
+  updateFilterTagDisplayState(currentSearch)
+  attachEventListenerToFilterTags()
 }
 
 // new below
@@ -80,10 +83,9 @@ function dropDownFilterComponent(categoryName, filterObject, filterTitle) {
   const currentSearch = getCurrentSearch()
   
   for (const [key, value] of Object.entries(filterObject)) {
-    let checked = currentSearch && currentSearch["category"].includes(key.toLowerCase().replace(" ", ""))
     dropDownItemsArr.push(`
             <li>
-                <input id='${key}' name='${categoryName}'  type='checkbox' class='filter-checkbox' ${ checked ? "checked" : ""}>
+                <input id='${key}' name='${categoryName}'  type='checkbox' class='filter-checkbox'>
                 <label for='${key}'>${key} <span> (${value})</span></label>
             </li>
             `)
@@ -109,11 +111,13 @@ function dropDownFilterComponent(categoryName, filterObject, filterTitle) {
 
 function updateCheckBoxState(filterParams) {
   document.querySelectorAll("input[type='checkbox']").forEach(checkBox => {
-    if (checkBox.name in filterParams) {
+    if (filterParams && checkBox.name in filterParams) {
       let args = filterParams[checkBox.name]
-      args.includes(checkBox.id)
+      args.includes(checkBox.id.replaceAll(" ", "").toLowerCase())
         ? checkBox.checked = true
         : checkBox.checked = false;
+    } else {
+      checkBox.checked = false
     }
   })
 }
@@ -146,6 +150,7 @@ function checkBoxEventHandler() {
 // Update URL parameters
   window.history.replaceState(null, '', `?${queryString}`);
 }
+
 document.querySelectorAll("input[type='checkbox']").forEach(item => {
   item.addEventListener('change', checkBoxEventHandler)
 });
@@ -164,6 +169,26 @@ function attachEventListenerToFilterTags() {
 
 // Attach an event handler to the clear all button
       document.querySelector('.clear-filter-tags').addEventListener('click', clearAllEventHandler);
+    }
+  }
+}
+
+function updateFilterTagDisplayState(filterParams){
+  // Clear all filter tags
+  document.querySelectorAll('.filter-tag').forEach(filterTag => filterTag.parentNode.removeChild(filterTag) );
+  let clearAllButton = document.querySelector(".clear-filter-tags")
+  if (clearAllButton) {
+    clearAllButton.parentNode.removeChild(clearAllButton)
+  }
+  
+
+  //Filter tags display hide logic
+  if (filterParams) {
+    for(const [key,value] of Object.entries(filterParams)){
+      value.forEach(item =>{
+          document.querySelector('.filter-tag-container').insertAdjacentHTML('afterbegin', filterTagComponent(key,item ) );
+
+      })
     }
   }
 }
@@ -189,9 +214,7 @@ function filterTagOnClickEventHandler(){
     const filterParams = Object.fromEntries(new URLSearchParams(window.location.search));
 
     //Transform filterparam object values to arrays
-    Object.entries(filterParams).forEach( ([key,value]) => filterParams[key] = value.split(',') )
-
-
+    Object.entries(filterParams).forEach( ([key,value]) => filterParams[key] = value.toLowerCase().replaceAll(" ", "").split(',') )
 
     let buttonClickedData = Object.fromEntries([ this.dataset.filter.split(",") ])
 
@@ -211,5 +234,5 @@ function filterTagOnClickEventHandler(){
 
 function clearAllEventHandler(){
     //Update URL parameters
-    window.history.replaceState(null, '', '/');
+    window.history.replaceState(null, '', '/?');
 }
