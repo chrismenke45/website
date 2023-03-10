@@ -37,43 +37,13 @@ permalink: /toolkit/
                 <!-- The Suggest a guide button has been temporarily hidden until we figure out how this button will function after it's clicked. See issue #3678 for more details. -->
                 <button hidden class="btn btn-primary btn-md-narrow">Suggest a guide</button>
             </div>
-            <!--New below-->
-            <div class="page-contain filter-toolbar">
+            <div class="page-contain filter-toolbar suggest-guide-group">
                 <ul class="filter-list" id="filter-list">
-                    <li class="filter-item">
-                        <a class="category-title" style="text-transform: capitalize;">
-                            guide category
-                            <span id="counter_guides" class="number-of-checked-boxes"></span>
-                            <span class="labelArrow"> ∟ </span>
-                        </a>
-                        {% assign category_list = "All, Development, Design, Project Management, Professional
-                            Development" | split: ", " %}
-                        <ul class="dropdown" id="category">
-                            {% for category in category_list %}
-                            <li>
-                                <input id="#{{category | replace: ' ', '+'}}" name="category" type="checkbox" class="filter-checkbox">
-                                <label for="#{{category | replace: ' ', '+'}}">{{category}} <span> (5)</span></label>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </li>
+                    <!--JS inserts filter dropdowns here-->
                 </ul>
                 <div class="filter-tag-container"></div>
             </div>
-
-            <!--New above-->
-            <!-- old below-->
-            <!--
-    <div class="dropdown">
-        {% assign category_list = "All, Development, Design, Project Management, Professional Development" | split: ", " %}
-        <select id ="dropdown-select">
-        {% for category in category_list %}
-        <option value="#{{category | replace: ' ', '+'}}">{{category}}</option>
-        {% endfor %}
-        </select>
-    </div>
-    -->
-            <!--old above-->
+            
             <!-- Iterating through toolkitPages collection -->
             {%- assign guides = site.guide-pages | sort: "title" -%}
             {%- for item in guides -%}

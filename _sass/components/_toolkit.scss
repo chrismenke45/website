@@ -114,6 +114,12 @@
     bottom: 1rem;
 }
 
+ul#filter-list {
+    grid-template-columns: repeat(1, 1fr);
+    width: 400px;
+    max-width: 100%;
+}
+
 .toolkit__card-list {
     margin-bottom: 10rem;
     @media (min-width: 1232px) and (max-width: 1400px) {
@@ -231,25 +237,10 @@
     }
 }
 
-.dropdown {
-    margin: 0 auto;
-}
-#dropdown-select {
-    width: 310px;
-    height: 44px;
-    background: $color-white;
-    border: 1px solid rgba(0, 0, 0, 0.24);
-    box-sizing: border-box;
-    border-radius: 5px;
-}
-
 @media #{$bp-mobile-up} {
     .dropdown {
         display: none;
     }
-    #dropdown-select {
-        display: none;
-        }
     }
 
 // For display on very narrow screens such as Galaxy Fold. There are currently
@@ -257,8 +248,5 @@
 @media (max-width: 281px) {
     .suggest-guide-group {
         display: block;    
-    }
-    #dropdown-select {
-        width: 216px;
     }
 }
