@@ -17,26 +17,10 @@ permalink: /toolkit/
     <img class="header-hero-image" src="/assets/images/toolkit/toolkit-hero.svg" alt="" />
 </div>
 
-<div class="toolkit-header__text-group">
-    {% assign category_list = "All, Development, Design, Project Management, Professional Development" | split: ", " %}
-    {% for category in category_list %}
-    {% if category == "All" %}
-    <a href="#{{category | replace: ' ', '+'}}" class="toolkit-header__banner-item selected-category">{{category}}</a>
-    {% else %}
-    <a href="#{{category | replace: ' ', '+'}}" class="toolkit-header__banner-item">{{ category }}</a>
-    {% endif %}
-    {% endfor %}
-</div>
-
 <div class="toolkit-background content-section">
     <a class="anchor" id="guides"></a>
     <div class="toolkit__card-list">
         <div class="toolkit-flex-container">
-            <div class="suggest-guide-group">
-                <h2 class="title3">Guides</h2>
-                <!-- The Suggest a guide button has been temporarily hidden until we figure out how this button will function after it's clicked. See issue #3678 for more details. -->
-                <button hidden class="btn btn-primary btn-md-narrow">Suggest a guide</button>
-            </div>
             <div class="page-contain filter-toolbar suggest-guide-group">
                 <ul class="filter-list" id="filter-list">
                     <!--JS inserts filter dropdowns here-->
