@@ -17,16 +17,16 @@ permalink: /toolkit/
     <img class="header-hero-image" src="/assets/images/toolkit/toolkit-hero.svg" alt="" />
 </div>
 
-<div class="toolkit-background content-section"> 
+<div class="toolkit-background content-section">
+    <div class="page-contain filter-toolbar suggest-guide-group">
+        <ul class="filter-list page-contain" id="toolkit-filter-list">
+            <!--JS inserts filter dropdowns here-->
+        </ul>
+        <div class="filter-tag-container"></div>
+    </div>
+    <a class="anchor" id="guides"></a> 
     <div class="toolkit__card-list">
         <div class="toolkit-flex-container">
-            <div class="page-contain filter-toolbar suggest-guide-group">
-                <ul class="filter-list page-contain" id="toolkit-filter-list">
-                    <!--JS inserts filter dropdowns here-->
-                </ul>
-                <div class="filter-tag-container"></div>
-            </div>
-            
             <!-- Iterating through toolkitPages collection -->
             {%- assign guides = site.guide-pages | sort: "title" -%}
             {%- for item in guides -%}
