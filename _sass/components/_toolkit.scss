@@ -114,10 +114,8 @@
     bottom: 1rem;
 }
 
-ul#filter-list {
+ul#toolkit-filter-list {
     grid-template-columns: repeat(1, 1fr);
-    width: 400px;
-    max-width: 100%;
 }
 
 .toolkit__card-list {

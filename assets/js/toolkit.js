@@ -76,7 +76,7 @@ guidesArr.forEach(guide => {
 })
 console.log(guidesArr, externalGuidesArr)
 
-const filterList = document.querySelector("#filter-list")
+const filterList = document.querySelector(".filter-list")
 
 function dropDownFilterComponent(categoryName, filterObject, filterTitle) {
   dropDownItemsArr = []
