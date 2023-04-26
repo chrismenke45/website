@@ -8,7 +8,7 @@ async function main({ g, c }, list) {
   github = g;
   context = c;
 
-  const owner = "hackforla";
+  const owner = "chrismenke45";
   const repo = "website";
 
   // create a new issue in repo, return the issue id for later: creating the project card linked to this issue

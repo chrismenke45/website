@@ -1,8 +1,9 @@
 name: Schedule Monthly
 
-on:
-  schedule:
-    - cron: '0 8 1 * *'
+on: workflow_dispatch
+  # schedule:
+  #   - cron: '0 8 1 * *'
+  
 
 jobs:
   list-inactive-members:

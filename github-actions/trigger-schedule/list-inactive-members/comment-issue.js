@@ -13,7 +13,7 @@ async function main({ g, c }, newIssueNumber) {
 }
 
 const commentOnIssue = async (agendaAndNotesIssueNumber, newIssueNumber) => {
-  const owner = "hackforla";
+  const owner = "chrismenke45";
   const repo = "website";
   await github.rest.issues.createComment({
     owner,
